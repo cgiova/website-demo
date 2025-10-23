@@ -18,22 +18,27 @@ body{
 
 }
 
+/* Base shape */
 .social a i{
-	height: 40px;
-	width: 40px;
-	border: 1px solid #111;
-	line-height: 40px;
-	margin: 0 10px;
-	color: #111;
-	font-size: 20px;
-	padding-bottom: 20px;
-	}
+  height: 40px; width: 40px; line-height: 40px;
+  margin: 0 10px; font-size: 20px; padding-bottom: 20px;
+  border: 1px solid #111; color: #111;
+  transition: all .25s ease;           /* smooth hover */
+}
 
-.social a:hover i{
-	color: #fff;
-	border-color: #bb9e7d;
-	background-color: #bb9e7d;
-	}
+/* Per-button colors */
+/* GitHub */
+.social a[href*="github.com"] i { color:#333; border-color:#333; }
+.social a[href*="github.com"]:hover i { background: #840ebf; color:#fff; border-color:#840ebf; }
+
+/* LinkedIn */
+.social a[href*="linkedin.com"] i { color:#333; border-color:#333; }
+.social a[href*="linkedin.com"]:hover i { background:#0077b5; color:#fff; border-color:#0077b5; }
+
+/* Example extras */
+/* Mailto */
+/*.social a[href^="mailto:"] i { color:#bb001b; border-color:#bb001b; }*/
+/*.social a[href^="mailto:"]:hover i { background:#bb001b; color:#fff; border-color:#bb001b; }*/
 
 
 @media (min-width: 778px)
@@ -82,8 +87,8 @@ body{
 
 .btn-rabbit:hover{
 	color: #fff;
-	background-color: #bb9e7d;
-	border-color: #bb9e7d;}
+	background-color: #3E9FDEFF;
+	border-color: #3F494EFF;}
 
 p{
 	color: #585757;
@@ -200,9 +205,15 @@ footer{
 	padding-bottom: 15px;
 }
 
+.home-cta{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
 .submit{
 
-	font-family: "Crimson"
+	font-family: "Crimson";
 	font-size: 16px;
 }
 
@@ -312,4 +323,57 @@ footer{
 }
 .show{
 	display: block;
+}
+
+/* ===== Harmonize ===== */
+/* Flex rows: vertically center image + text */
+#about_scroll .row,
+#work_scroll .row,
+#contact_scroll .row {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;         /* keep two columns aligned */
+}
+
+/* Vertically center text columns */
+#about_scroll .left, #about_scroll .right,
+#work_scroll .left,  #work_scroll .right,
+#contact_scroll .left, #contact_scroll .right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+/* Consistent image band height (desktop/tablet) */
+#about_scroll .img-rabbit,
+#work_scroll .img-rabbit,
+#contact_scroll .img-rabbit {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;         /* crop to fill, no distortion */
+  display: block;
+}
+
+/* Slightly shorter images on medium screens */
+@media (max-width: 1200px) {
+  #about_scroll .img-rabbit,
+  #work_scroll .img-rabbit,
+  #contact_scroll .img-rabbit {
+    height: 460px;
+  }
+}
+
+/* Mobile: stack, natural image height */
+@media (max-width: 991px) {
+  #about_scroll .row,
+  #work_scroll .row,
+  #contact_scroll .row {
+    display: block;
+  }
+  #about_scroll .img-rabbit,
+  #work_scroll .img-rabbit,
+  #contact_scroll .img-rabbit {
+    height: auto;
+  }
 }

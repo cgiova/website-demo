@@ -2,7 +2,6 @@ $( document ).ready(function() {
                 
                 $("#about_scroll").fadeOut();   
                 $("#work_scroll").fadeOut();
-                $("#contact_scroll").fadeOut();
 
                 $("#about").click(function(){
                     $("#index").fadeOut();
@@ -16,12 +15,6 @@ $( document ).ready(function() {
                     $('#work_left').addClass('animated slideInLeft');
                     $('#work_right').addClass('animated slideInRight');
                     });
-                $("#contact").click(function(){
-                    $("#index").fadeOut();
-                    $("#contact_scroll").fadeIn();
-                    $('#contact_left').addClass('animated slideInLeft');
-                    $('#contact_right').addClass('animated slideInRight');
-                    });
                 
                 $(".back").click(function(){
                     $(".pages").fadeOut();
@@ -31,3 +24,19 @@ $( document ).ready(function() {
                     });
            
 		});
+
+// Spam-safe email: assemble on the fly
+(function () {
+  var user = "claudio";          // before @
+  var domain = "example.com";    // after @
+  var subj = encodeURIComponent("Portfolio Contact");
+  var link = "mailto:" + user + "@" + domain + "?subject=" + subj;
+
+  var a = document.getElementById("emailLink");
+  if (a) {
+    a.href = link;
+    a.addEventListener("click", function(){
+      document.getElementById("formStatus").textContent = "Opening your email client…";
+    });
+  }
+})();
